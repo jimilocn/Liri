@@ -21,6 +21,7 @@ var concertThis = function (artist) {
           console.log("\n" + "The date and time of this event: " + moment(response.data[0].datetime).format("MMMM Do YYYY, h:mm a"));
           console.log("Tickets are available for purchase at: " + response.data[0].offers[0].url);
           console.log("Tickets for this event is currently: " + response.data[0].offers[0].status);
+          console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
 
           var text = [
             "Artist searched: " + artist,
@@ -87,6 +88,17 @@ var movieThis = function (movieName) {
         console.log("Language that the movie was produced in: " + response.data.Language);
         console.log("Plot of the move (SPOILER ALERT): " + response.data.Plot);
         console.log("Actors in the movie: " + response.data.Actors);
+        console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
+
+// TA Dave has helped with object destructuring 
+//         let {Title, Year, Rated} = response.data
+//         console.log(
+// `
+// Title of the movie: ${Title}
+// Release Year: ${Year}
+// IMBD Rating ${Rated}
+// `);
+        
 
         var text = [
           "Title of the movie: " + response.data.Title,
@@ -157,7 +169,7 @@ var runSpotify = function (songName) {
       console.log("Song name: " + songs[i].name);
       console.log("Preview songs: " + songs[i].preview_url);
       console.log("Album: " + songs[i].album.name);
-      console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+      console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+"\n")
       var text = [
         "Song# " + (i + 1),
         "\n" + "Artist: " + songs[i].artists[0].name,
