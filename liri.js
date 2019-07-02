@@ -222,7 +222,7 @@ var userPick = function (userInput, userChoices) {
       movieThis(userChoices);
       break;
     default:
-      console.log("This isn't a programmed LIRI function. Please use 'spotify-this-song', 'concert-this', 'movie-this', or 'do-what-it-says'.");
+      console.log("This isn't a programmed LIRI BOT function. Please use 'spotify-this-song', 'concert-this', 'movie-this', or 'do-what-it-says'.");
 
   }
 }
