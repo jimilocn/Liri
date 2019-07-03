@@ -6,7 +6,6 @@ var axios = require("axios");
 var moment = require("moment");
 var fs = require("fs");
 var spotify = new Spotify(keys.spotify);
-
 // function for "concert-this" node function
 var concertThis = function (artist) {
 
@@ -75,69 +74,57 @@ var concertThis = function (artist) {
       console.log(error.config);
     });
 
-  
-};
 
+};
 // function for "movie-this" node function
 var movieThis = function (movieName) {
   if (!movieName) {
     movieName = "Mr Nobody";
-  console.log("You did not input a movie to search, so this is the default result \n");
+    console.log("You did not input a movie to search, so this is the default result \n");
   }
   var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
-
-    // accessing informtaion from the OMDB API
-    axios.get(queryUrl).then(
+  // accessing informtaion from the OMDB API
+  axios.get(queryUrl).then(
       function (response) {
-  
-  
-          console.log("Title of the movie: " + response.data.Title);
-          console.log("Release Year: " + response.data.Year);
-          console.log("IMBD Rating: " + response.data.Rated);
-          console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
-          console.log("Countries that the movie was produced: " + response.data.Country);
-          console.log("Language that the movie was produced in: " + response.data.Language);
-          console.log("Plot of the move (SPOILER ALERT): " + response.data.Plot);
-          console.log("Actors in the movie: " + response.data.Actors);
-          console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
-  
-          // TA Dave has helped with object destructuring 
-          //         let {Title, Year, Rated} = response.data
-          //         console.log(
-          // `
-          // Title of the movie: ${Title}
-          // Release Year: ${Year}
-          // IMBD Rating ${Rated}
-          // `);
-  
-          // setting up the information to be logged into the log.txt
-          var text = [
-            "Title of the movie: " + response.data.Title,
-            "\n" + "Release Year: " + response.data.Year,
-            "\n" + "IMBD Rating: " + response.data.Rated,
-            "\n" + "Rotten Tomatoes Rating: " + response.data.Ratings[1].Value,
-            "\n" + "Countries that the movie was produced: " + response.data.Country,
-            "\n" + "Language that the movie was produced in: " + response.data.Language,
-            "\n" + "Plot of the move (SPOILER ALERT): " + response.data.Plot,
-            "\n" + "Actors in the movie: " + response.data.Actors,
-            "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n\n\n"
-  
-          ];
-          // enter that information into log.txt
-          fs.appendFile("log.txt", text, function (err) {
-  
-  
-            if (err) {
-              console.log(err);
-            }
-  
-            console.log("Content was also added to the log!");
-  
-          });
-  
-  
-        
-  
+        // console.log("Title of the movie: " + response.data.Title);
+        // console.log("Release Year: " + response.data.Year);
+        // console.log("IMBD Rating: " + response.data.Rated);
+        // console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+        // console.log("Countries that the movie was produced: " + response.data.Country);
+        // console.log("Language that the movie was produced in: " + response.data.Language);
+        // console.log("Plot of the move (SPOILER ALERT): " + response.data.Plot);
+        // console.log("Actors in the movie: " + response.data.Actors);
+        // console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
+
+        // TA Dave has helped with object destructuring 
+        //         let {Title, Year, Rated} = response.data
+        //         console.log(
+        // `
+        // Title of the movie: ${Title}
+        // Release Year: ${Year}
+        // IMBD Rating ${Rated}
+        // `);
+
+        // setting up the information to be logged into the log.txt
+        var text = [
+          "Title of the movie: " + response.data.Title,
+          "\n" + "Release Year: " + response.data.Year,
+          "\n" + "IMBD Rating: " + response.data.Rated,
+          "\n" + "Rotten Tomatoes Rating: " + response.data.Ratings[1].Value,
+          "\n" + "Countries that the movie was produced: " + response.data.Country,
+          "\n" + "Language that the movie was produced in: " + response.data.Language,
+          "\n" + "Plot of the move (SPOILER ALERT): " + response.data.Plot,
+          "\n" + "Actors in the movie: " + response.data.Actors,
+          "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n\n"
+        ];
+        console.log(text.join(", "));
+        // enter that information into log.txt
+        fs.appendFile("log.txt", text, function (err) {
+          if (err) {
+            console.log(err);
+          }
+          console.log("Content was also added to the log!");
+        });
       })
     .catch(function (error) {
       if (error.response) {
@@ -162,13 +149,10 @@ var movieThis = function (movieName) {
 
 
 }
-
-
-
 // function for spotify-this-song
 var runSpotify = function (songName) {
-  if(!songName){
-    songName="The Sign";
+  if (!songName) {
+    songName = "The Sign";
     spotify.search({
       type: 'track',
       query: songName,
@@ -177,105 +161,66 @@ var runSpotify = function (songName) {
         console.log('Error occurred: ' + err);
         return;
       }
-  
       var songs = data.tracks.items;
-  
-  
-  
-        console.log("You did not add a song to search, so this is the default result \n");
-        console.log("Artist: " + songs[5].artists[0].name)
-        console.log("Song name: " + songs[5].name);
-        console.log("Preview songs: " + songs[5].preview_url);
-        console.log("Album: " + songs[5].album.name);
-        console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
-        var text = [
-          "Default Search when Search Input is left blank",
-          "\n" + "Artist: " + songs[5].artists[0].name,
-          "\n" + "Song name: " + songs[5].name,
-          "\n" + "Preview songs: " + songs[5].preview_url,
-          "\n" + "Album: " + songs[5].album.name,
-          "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" +
-          "\n\n\n",
-        ];
-  
-        fs.appendFile("log.txt", text, function (err) {
-  
-  
-          if (err) {
-            console.log(err);
-          }
-  
-        });
-  
-  
-      console.log("Content was also added to the log!");
-  
-  
-  
-    });
-  }
-
-  else{
-  spotify.search({
-    type: 'track',
-    query: songName,
-    limit: 5
-  }, function (err, data) {
-    if (err) {
-      console.log('Error occurred: ' + err);
-      return;
-    }
-
-    var songs = data.tracks.items;
-
-
-    for (var i = 0; i < songs.length; i++) {
-      console.log(i + 1);
-      console.log("Artist: " + songs[i].artists[0].name)
-      console.log("Song name: " + songs[i].name);
-      console.log("Preview songs: " + songs[i].preview_url);
-      console.log("Album: " + songs[i].album.name);
-      console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
       var text = [
-        "Song# " + (i + 1),
-        "\n" + "Artist: " + songs[i].artists[0].name,
-        "\n" + "Song name: " + songs[i].name,
-        "\n" + "Preview songs: " + songs[i].preview_url,
-        "\n" + "Album: " + songs[i].album.name,
+        "Default Search when Search Input is left blank \n" +
+        "\n" + "Artist: " + songs[5].artists[0].name,
+        "\n" + "Song name: " + songs[5].name,
+        "\n" + "Preview songs: " + songs[5].preview_url,
+        "\n" + "Album: " + songs[5].album.name,
         "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" +
-        "\n\n\n",
+        "\n\n",
       ];
-
+      console.log(text.join(", "))
       fs.appendFile("log.txt", text, function (err) {
-
-
         if (err) {
           console.log(err);
         }
-
       });
-
-    };
-    console.log("Content was also added to the log!");
-
-
-
-  });
-}
+      console.log("Content was also added to the log!");
+    });
+  } else {
+    spotify.search({
+      type: 'track',
+      query: songName,
+      limit: 5
+    }, function (err, data) {
+      if (err) {
+        console.log('Error occurred: ' + err);
+        return;
+      }
+      var songs = data.tracks.items;
+      for (var i = 0; i < songs.length; i++) {
+        var text = [
+          "Song# " + (i + 1),
+          "\n" + "Artist: " + songs[i].artists[0].name,
+          "\n" + "Song name: " + songs[i].name,
+          "\n" + "Preview songs: " + songs[i].preview_url,
+          "\n" + "Album: " + songs[i].album.name,
+          "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" +
+          "\n\n",
+        ];
+        console.log(text.join(", "));
+        fs.appendFile("log.txt", text, function (err) {
+          if (err) {
+            console.log(err);
+          }
+        });
+      };
+      console.log("Content was also added to the log!");
+    });
+  }
 };
 // function for pulling up the information inside the random.txt
 var runRandomTxt = function () {
   fs.readFile('random.txt', 'utf8', function (err, data) {
     if (err) throw err;
     var randomTxtArr = data.split(',');
-
     if (randomTxtArr != 0) {
       runThis(randomTxtArr[0], randomTxtArr.slice(1).join(" "))
     }
-
   })
 }
-
 // sets up the function with conditions for the user input
 var userPick = function (userInput, userChoices) {
   switch (userInput) {
@@ -293,10 +238,8 @@ var userPick = function (userInput, userChoices) {
       break;
     default:
       console.log("This isn't a programmed LIRI BOT function. Please use 'spotify-this-song', 'concert-this', 'movie-this', or 'do-what-it-says'.");
-
   }
 }
-
 // takes in the user input and puts them into two arguments
 var runThis = function (arg1, arg2) {
   userPick(arg1, arg2);
