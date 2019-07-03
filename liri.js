@@ -16,26 +16,26 @@ var concertThis = function (artist) {
 
         // accessing information from the bandsintown API and displaying...
         if (response.data.length) {
-          console.log("\n\n" + "Artist searched: ", artist)
-          console.log("\n" + "Artist will be playing next at: " + response.data[0].venue.name);
-          console.log("The venue is located at: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
-          console.log("\n" + "All artists being featured at this event: " + response.data[0].lineup)
-          console.log("\n" + "The date and time of this event: " + moment(response.data[0].datetime).format("MMMM Do YYYY, h:mm a"));
-          console.log("Tickets are available for purchase at: " + response.data[0].offers[0].url);
-          console.log("Tickets for this event is currently: " + response.data[0].offers[0].status);
-          console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
+          // console.log("\n\n" + "Artist searched: ", artist)
+          // console.log("\n" + "Artist will be playing next at: " + response.data[0].venue.name);
+          // console.log("The venue is located at: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
+          // console.log("\n" + "All artists being featured at this event: " + response.data[0].lineup)
+          // console.log("\n" + "The date and time of this event: " + moment(response.data[0].datetime).format("MMMM Do YYYY, h:mm a"));
+          // console.log("Tickets are available for purchase at: " + response.data[0].offers[0].url);
+          // console.log("Tickets for this event is currently: " + response.data[0].offers[0].status);
+          // console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
           // crafting the texts that will be logged into log.txt
           var text = [
-            "Artist searched: " + artist,
+            "\n Artist searched: " + artist,
             "\n" + "Artist will be playing next at: " + response.data[0].venue.name,
             "\n" + "The venue is located at: " + response.data[0].venue.city + ", " + response.data[0].venue.country,
             "\n" + "All artists being featured at this event: " + response.data[0].lineup,
             "\n" + "The date and time of this event: " + moment(response.data[0].datetime).format("MMMM Do YYYY, h:mm a"),
             "\n" + "Tickets are available for purchase at: " + response.data[0].offers[0].url,
             "\n" + "Tickets for this event is currently: " + response.data[0].offers[0].status,
-
-            "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n\n\n"
+            "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n\n"
           ];
+          console.log(text.join(", "));
           // append the text into the log.txt
           fs.appendFile("log.txt", text, function (err) {
 
@@ -169,7 +169,7 @@ var runSpotify = function (songName) {
         "\n" + "Preview songs: " + songs[5].preview_url,
         "\n" + "Album: " + songs[5].album.name,
         "\n" + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" +
-        "\n\n",
+        "\n",
       ];
       console.log(text.join(", "))
       fs.appendFile("log.txt", text, function (err) {
