@@ -40,4 +40,5 @@ This program was created in the Northwestern University Coding Bootcamp 2019. It
 - bandsintown API
 
 
-
+# Link to the video demo of the app
+*  https://youtu.be/qj7YG1Z_xIk

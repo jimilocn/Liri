@@ -8,10 +8,8 @@ var fs = require("fs");
 var spotify = new Spotify(keys.spotify);
 // function for "concert-this" node function
 var concertThis = function (artist) {
-
-
-
   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(
+
       function (response) {
 
         // accessing information from the bandsintown API and displaying...
@@ -77,16 +75,7 @@ var movieThis = function (movieName) {
   // accessing informtaion from the OMDB API
   axios.get(queryUrl).then(
       function (response) {
-        // console.log("Title of the movie: " + response.data.Title);
-        // console.log("Release Year: " + response.data.Year);
-        // console.log("IMBD Rating: " + response.data.Rated);
-        // console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
-        // console.log("Countries that the movie was produced: " + response.data.Country);
-        // console.log("Language that the movie was produced in: " + response.data.Language);
-        // console.log("Plot of the move (SPOILER ALERT): " + response.data.Plot);
-        // console.log("Actors in the movie: " + response.data.Actors);
-        // console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
-
+      
         // TA Dave has helped with object destructuring 
         //         let {Title, Year, Rated} = response.data
         //         console.log(
@@ -139,7 +128,7 @@ var movieThis = function (movieName) {
     });
 
 
-}
+};
 // function for spotify-this-song
 var runSpotify = function (songName) {
   if (!songName) {
