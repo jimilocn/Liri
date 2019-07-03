@@ -1,0 +1,10 @@
+
+ Artist searched: ariana grande,
+Artist will be playing next at: Fiserv Forum,
+The venue is located at: Milwaukee, United States,
+All artists being featured at this event: Ariana Grande,Normani Kordei,Social House,
+The date and time of this event: July 5th 2019, 7:00 pm,
+Tickets are available for purchase at: https://www.bandsintown.com/t/100456879?app_id=codingbootcamp&came_from=267&utm_medium=api&utm_source=public_api&utm_campaign=ticket,
+Tickets for this event is currently: available,
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+

@@ -16,15 +16,6 @@ var concertThis = function (artist) {
 
         // accessing information from the bandsintown API and displaying...
         if (response.data.length) {
-          // console.log("\n\n" + "Artist searched: ", artist)
-          // console.log("\n" + "Artist will be playing next at: " + response.data[0].venue.name);
-          // console.log("The venue is located at: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
-          // console.log("\n" + "All artists being featured at this event: " + response.data[0].lineup)
-          // console.log("\n" + "The date and time of this event: " + moment(response.data[0].datetime).format("MMMM Do YYYY, h:mm a"));
-          // console.log("Tickets are available for purchase at: " + response.data[0].offers[0].url);
-          // console.log("Tickets for this event is currently: " + response.data[0].offers[0].status);
-          // console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" + "\n")
-          // crafting the texts that will be logged into log.txt
           var text = [
             "\n Artist searched: " + artist,
             "\n" + "Artist will be playing next at: " + response.data[0].venue.name,
